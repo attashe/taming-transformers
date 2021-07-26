@@ -389,7 +389,7 @@ if __name__ == "__main__":
         opt.resume_from_checkpoint = ckpt
         base_configs = sorted(glob.glob(os.path.join(logdir, "configs/*.yaml")))
         opt.base = base_configs+opt.base
-        _tmp = logdir.split("/")
+        _tmp = os.path.normpath(logdir).split(os.sep)
         nowname = _tmp[_tmp.index("logs")+1]
     else:
         if opt.name:
@@ -416,7 +416,7 @@ if __name__ == "__main__":
         # merge trainer cli with config
         trainer_config = lightning_config.get("trainer", OmegaConf.create())
         # default to ddp
-        trainer_config["distributed_backend"] = "ddp"
+        trainer_config["distributed_backend"] = None  # "ddp"
         for k in nondefault_trainer_args(opt):
             trainer_config[k] = getattr(opt, k)
         if not "gpus" in trainer_config:
@@ -552,9 +552,9 @@ if __name__ == "__main__":
             if trainer.global_rank == 0:
                 import pudb; pudb.set_trace()
 
-        import signal
-        signal.signal(signal.SIGUSR1, melk)
-        signal.signal(signal.SIGUSR2, divein)
+        # import signal
+        # signal.signal(signal.SIGUSR1, melk)
+        # signal.signal(signal.SIGUSR2, divein)
 
         # run
         if opt.train:
