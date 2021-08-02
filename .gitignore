@@ -2,3 +2,6 @@ __pycache__
 logs
 data/ffhq
 data/celebahq
+wh40k_train
+wh40k_val
+taming/modules/autoencoder/lpips/

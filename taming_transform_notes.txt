@@ -1,0 +1,15 @@
+1. Train VQGAN on my Wh40k dataset
+
+python main.py --base configs/wh40k_vqgan.yaml -t True --gpus '0,'
+
+Resume training:
+
+python main.py --base configs/wh40k_vqgan.yaml -t True --gpus '0,' --resume .\logs\2021-08-01T18-53-02_wh40k_vqgan\
+
+
+2. Train transformer for learned VQGAN:
+
+python main.py --base configs/faceshq_transformer.yaml -t True --gpus '0,' --resume .\logs\2021-07-23T20-24-55_faceshq_transformer\
+
+In yaml file needs to setup specific vqgan weight
+
