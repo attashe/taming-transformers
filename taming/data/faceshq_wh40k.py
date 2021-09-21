@@ -30,7 +30,8 @@ class FacesBase(Dataset):
 class Wh40kTrain(FacesBase):
     def __init__(self, size, keys=None):
         super().__init__()
-        root = "data/wh40k_train"
+        # root = "data/wh40k_train"
+        root = "data/deepdark_train"
         relpaths = filter(lambda x: x.endswith('jpg') or x.endswith('png') or x.endswith('jpeg'), 
                           os.listdir(root))
         paths = [os.path.join(root, relpath) for relpath in relpaths]

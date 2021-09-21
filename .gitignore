@@ -3,5 +3,6 @@ logs
 data/ffhq
 data/celebahq
 wh40k_train
+deepdark_train
 wh40k_val
 taming/modules/autoencoder/lpips/

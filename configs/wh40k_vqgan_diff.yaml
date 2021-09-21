@@ -1,6 +1,6 @@
 model:
   base_learning_rate: 4.5e-6
-  target: taming.models.vqgan.VQModel
+  target: taming.models.vqgan_diff.VQModel
   params:
     embed_dim: 256
     n_embed: 1024
@@ -28,8 +28,8 @@ model:
 data:
   target: main.DataModuleFromConfig
   params:
-    batch_size: 6
-    num_workers: 6
+    batch_size: 4
+    num_workers: 2
     train:
       target: taming.data.faceshq_wh40k.Wh40kHQTrain
       params:

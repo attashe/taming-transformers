@@ -43,10 +43,15 @@ class ImagePaths(Dataset):
         return self._length
 
     def preprocess_image(self, image_path):
-        image = Image.open(image_path)
-        if not image.mode == "RGB":
-            image = image.convert("RGB")
-        image = np.array(image).astype(np.uint8)
+        try:
+            image = Image.open(image_path)
+            if not image.mode == "RGB":
+                image = image.convert("RGB")
+            assert image is not None, 'Image corrupted'
+            image = np.array(image).astype(np.uint8)
+        except Exception as e:
+            print('Image corrupted')
+            image = np.zeros((256, 256, 3), dtype=np.uint8)
         image = self.preprocessor(image=image)["image"]
         image = (image/127.5 - 1.0).astype(np.float32)
         return image
